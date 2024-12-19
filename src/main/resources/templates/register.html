@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Account</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div class="container">
+    <h1>Create Your Account</h1>
+    <form method="POST" action="/registered" th:object="${user}">
+        <table>
+            <!-- Email Field -->
+            <tr>
+                <td><label for="email">Email:</label></td>
+                <td>
+                    <input type="text" id="email" th:field="*{email}" placeholder="Enter your email">
+                </td>
+                <td>
+                    <span data-th-if="${#fields.hasErrors('email')}"
+                          data-th-errors="*{email}" class="error"></span>
+                </td>
+            </tr>
+
+            <!-- Password Field -->
+            <tr>
+                <td><label for="password">Password:</label></td>
+                <td>
+                    <input type="text" id="password" th:field="*{password}" placeholder="Enter your password">
+                </td>
+                <td>
+                    <span data-th-if="${#fields.hasErrors('password')}"
+                          data-th-errors="*{password}" class="error"></span>
+                </td>
+            </tr>
+
+        </table>
+        <div class="button-group">
+            <button type="button" class="secondary-button" onclick="window.history.back()">Back</button>
+            <button type="submit">Create Account</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

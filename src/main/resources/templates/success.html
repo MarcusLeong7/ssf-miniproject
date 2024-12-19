@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Success in Account Creation</title>
+    <link rel="stylesheet" href="/css/success.css">
+</head>
+<body>
+<div>
+    <div class="container">
+        <div class="icon">&#x2709;</div> <!-- Email Icon -->
+        <h1>Success!</h1>
+        <p>Your account for <code th:text="${user.email}"></code> has been successfully created.</p>
+    </div>
+    <div>
+        <a th:href="@{/home}">
+            <button type="button">Homepage</button>
+        </a>
+    </div>
+</div>
+</body>
+</html>
