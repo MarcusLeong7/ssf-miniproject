@@ -20,7 +20,8 @@ public class PasswordConfig {
         http.csrf().disable()
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/register", "/registered","/",
-                                "/process-login","/css/**", "/js/**").permitAll()
+                                "/process-login",
+                                "/search","/css/**", "/js/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form

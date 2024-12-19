@@ -1,13 +1,70 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Meal Planner</title>
+    <title>Meal List</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
 <body>
-<h1>Meal Planner</h1>
-<p>Welcome to Meal Planner</p>
+<div class="container mt-5">
+    <h1 class="text-center">Meal List</h1>
 
+    <!-- Query Input Form -->
+    <form class="row g-3 mb-4" method="get" action="/search">
+        <div class="col-md-3">
+            <label for="maxCalories" class="form-label">Max Calories</label>
+            <input type="number" class="form-control" id="maxCalories" name="maxCalories" placeholder="e.g., 500">
+        </div>
+        <div class="col-md-3">
+            <label for="minProtein" class="form-label">Min Protein (g)</label>
+            <input type="text" class="form-control" id="minProtein" name="minProtein" placeholder="e.g., 10g">
+        </div>
+        <div class="col-md-3">
+            <label for="maxCarbs" class="form-label">Max Carbs (g)</label>
+            <input type="text" class="form-control" id="maxCarbs" name="maxCarbs" placeholder="e.g., 20g">
+        </div>
+        <div class="col-md-3">
+            <label for="maxFats" class="form-label">Max Fats (g)</label>
+            <input type="text" class="form-control" id="maxFats" name="maxFats" placeholder="e.g., 15g">
+        </div>
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+    </form>
 
+    <!-- Check if the meals list is empty -->
+    <div th:if="${#lists.isEmpty(meals)}">
+        <p class="text-center">No meals found matching the criteria.</p>
+    </div>
+
+    <!-- Display meals in a table -->
+    <table class="table table-bordered table-striped mt-3" th:if="${!#lists.isEmpty(meals)}">
+        <thead class="thead-dark">
+        <tr>
+            <th>Image</th>
+            <th>Title</th>
+            <th>Calories</th>
+            <th>Protein</th>
+            <th>Fats</th>
+            <th>Carbs</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="meal : ${meals}">
+            <td>
+                <img th:src="${meal.image}" alt="Meal Image" class="img-thumbnail" style="width: 100px; height: auto;">
+            </td>
+            <td th:text="${meal.title}"></td>
+            <td th:text="${meal.calories}"></td>
+            <td th:text="${meal.protein}"></td>
+            <td th:text="${meal.fats}"></td>
+            <td th:text="${meal.carbs}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
