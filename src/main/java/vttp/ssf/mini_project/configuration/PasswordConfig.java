@@ -21,7 +21,8 @@ public class PasswordConfig {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/register", "/registered","/",
                                 "/process-login",
-                                "/search","/css/**", "/js/**").permitAll()
+                                "/search",
+                                "/recipes/{id}/information","/css/**", "/js/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form

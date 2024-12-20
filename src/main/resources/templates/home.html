@@ -41,6 +41,7 @@
     <table class="table table-bordered table-striped mt-3" th:if="${!#lists.isEmpty(meals)}">
         <thead class="thead-dark">
         <tr>
+            <th>Id</th>
             <th>Image</th>
             <th>Title</th>
             <th>Calories</th>
@@ -51,6 +52,9 @@
         </thead>
         <tbody>
         <tr th:each="meal : ${meals}">
+            <td>
+                <a th:href="@{/recipes/{id}/information(id=${meal.id})}" th:text="${meal.id}"></a>
+            </td>
             <td>
                 <img th:src="${meal.image}" alt="Meal Image" class="img-thumbnail" style="width: 100px; height: auto;">
             </td>

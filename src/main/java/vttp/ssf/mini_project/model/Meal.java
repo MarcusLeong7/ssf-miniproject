@@ -2,9 +2,10 @@ package vttp.ssf.mini_project.model;
 
 public class Meal {
 
+    private String id;
     private String title;
     private String image;
-    private int calories;
+    private String calories;
     private String protein;
     private String carbs;
     private String fats;
@@ -12,13 +13,22 @@ public class Meal {
     public Meal() {
     }
 
-    public Meal(String title, String image, int calories, String protein, String carbs, String fats) {
+    public Meal(String id, String title, String image, String calories, String protein, String carbs, String fats) {
+        this.id = id;
         this.title = title;
         this.image = image;
         this.calories = calories;
         this.protein = protein;
         this.carbs = carbs;
         this.fats = fats;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -37,11 +47,11 @@ public class Meal {
         this.image = image;
     }
 
-    public int getCalories() {
+    public String getCalories() {
         return calories;
     }
 
-    public void setCalories(int calories) {
+    public void setCalories(String calories) {
         this.calories = calories;
     }
 

@@ -10,6 +10,7 @@ import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.servlet.resource.ResourceUrlProvider;
 import org.springframework.web.util.UriComponentsBuilder;
 import vttp.ssf.mini_project.model.Meal;
 
@@ -20,22 +21,28 @@ import java.util.List;
 @Service
 public class MealService {
 
+    private final ResourceUrlProvider mvcResourceUrlProvider;
     @Value("${my.api.key}")
     private String API_KEY;
 
-    public static final String API_URL ="https://api.spoonacular.com/recipes/findByNutrients";
+    public static final String NUTRIENTS_API_URL = "https://api.spoonacular.com/recipes/findByNutrients";
+    public static final String RECIPES_API_URL = "https://api.spoonacular.com/recipes/{id}/information";
+
+    public MealService(ResourceUrlProvider mvcResourceUrlProvider) {
+        this.mvcResourceUrlProvider = mvcResourceUrlProvider;
+    }
 
     // https://api.spoonacular.com/recipes/findByNutrients
     // ?apiKey=apikey&minCarbs=10&maxCarbs=50&number=2
-    public List<Meal> getMeals(int maxCalories,String minProtein,String maxCarbs ,String maxFats) {
+    public List<Meal> getMeals(int maxCalories, String minProtein, String maxCarbs, String maxFats) {
         //Construct the URL
         String uri = UriComponentsBuilder
-                .fromUriString(API_URL)
-                .queryParam("apiKey",API_KEY)
-                .queryParam("maxCalories",maxCalories)
+                .fromUriString(NUTRIENTS_API_URL)
+                .queryParam("apiKey", API_KEY)
+                .queryParam("maxCalories", maxCalories)
                 .queryParam("minProtein", minProtein)
-                .queryParam("maxCarbs",maxCarbs)
-                .queryParam("maxFat",maxFats)
+                .queryParam("maxCarbs", maxCarbs)
+                .queryParam("maxFat", maxFats)
                 .toUriString();
 
         // Create the GET request
@@ -48,7 +55,7 @@ public class MealService {
         RestTemplate restTemplate = new RestTemplate();
         List<Meal> meals = new ArrayList<>();
 
-        try{
+        try {
             // Fetch response
             ResponseEntity<String> response = restTemplate.exchange(request, String.class);
             String payload = response.getBody();
@@ -59,17 +66,19 @@ public class MealService {
             System.out.println(">>> Processing JsonArray");
 
             // Extract array data
-            for (JsonObject jsonObj : jsonArray.getValuesAs(JsonObject.class)){
+            for (JsonObject jsonObj : jsonArray.getValuesAs(JsonObject.class)) {
                 // Access properties of each object
+                String id = jsonObj.getJsonNumber("id").toString();
                 String title = jsonObj.getString("title");
                 String image = jsonObj.getString("image");
-                int calories = jsonObj.getInt("calories");
+                String calories = jsonObj.getJsonNumber("calories").toString();
                 String protein = jsonObj.getString("protein");
                 String fat = jsonObj.getString("fat");
                 String carbs = jsonObj.getString("carbs");
 
                 // Set each meal with relevant data
                 Meal meal = new Meal();
+                meal.setId(id);
                 meal.setTitle(title);
                 meal.setImage(image);
                 meal.setCalories(calories);
@@ -79,12 +88,49 @@ public class MealService {
                 // Add to list
                 meals.add(meal);
             }
-        }
-        catch (Exception ex){
+        } catch (Exception ex) {
             System.err.printf("Error fetching data: %s\n", ex.getMessage());
         }
 
         return meals;
+    }
+
+    // https://api.spoonacular.com/recipes/{id}/information
+    // ?apiKey=
+    public String getRecipesUrl(String id) {
+
+        // Construct the URL
+        String url = UriComponentsBuilder.fromUriString(RECIPES_API_URL)
+                .queryParam("apiKey", API_KEY)
+                .buildAndExpand(id)
+                .toUriString();
+
+        // Create the GET request
+        RequestEntity<Void> request = RequestEntity
+                .get(url)
+                .accept(MediaType.APPLICATION_JSON)
+                .build();
+
+        // RestTemplate to send request
+        RestTemplate restTemplate = new RestTemplate();
+        String recipeUrl = null;
+
+        try {
+            ResponseEntity<String> response = restTemplate.exchange(request, String.class);
+            String payload = response.getBody();
+            System.out.println(payload);
+
+            JsonReader reader = Json.createReader(new StringReader(payload));
+            JsonObject jsonObj = reader.readObject();
+            System.out.println(">>> Processing JsonObject");
+
+            // Extract relevant data
+            recipeUrl = jsonObj.getString("sourceUrl");
+        } catch (Exception ex) {
+            System.err.printf("Error fetching data: %s\n", ex.getMessage());
+        }
+
+        return recipeUrl;
     }
 
 
