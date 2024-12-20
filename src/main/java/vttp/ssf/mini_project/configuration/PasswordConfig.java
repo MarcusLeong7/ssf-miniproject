@@ -22,7 +22,10 @@ public class PasswordConfig {
                         .requestMatchers("/register", "/registered","/",
                                 "/process-login",
                                 "/search",
-                                "/recipes/{id}/information","/css/**", "/js/**").permitAll()
+                                "/recipes/{id}/information",
+                                "/css/**",
+                                "/js/**",
+                                "/favicon.ico" ).permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
