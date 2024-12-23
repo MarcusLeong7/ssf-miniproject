@@ -1,6 +1,7 @@
 
 body {
     font-family: 'Arial', sans-serif;
+    background: url('/images/OrganicProduce.jpg') no-repeat center center fixed;
     background-color:#f0f0f0;
     background-size: cover;
     margin: 0;
@@ -20,7 +21,7 @@ body {
     text-align: center;
 }
 h1 {
-    color: #27ae60;
+    color: #0e0808;
     font-size: 2.5rem;
     margin-bottom: 20px;
 }
@@ -63,11 +64,11 @@ button:hover {
     background-color: #219150;
 }
 .secondary-button {
-    background-color: #f39c12;
+    background-color: #e85764;
     margin-left: 10px;
 }
 button.secondary-button:hover {
-    background-color: #e67e22;
+    background-color: #ef2b49;
 }
 .error {
     color: #e74c3c;

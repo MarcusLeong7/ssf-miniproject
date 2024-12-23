@@ -1,0 +1,44 @@
+
+body {
+    background: url('/images/OrganicProduce.jpg') no-repeat center center fixed;
+    background-size: cover;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+.header {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.container {
+    display: none;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    margin: 50px auto;
+    width: 300px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.container.active {
+    display: block;
+}
+
+table {
+    width: 100%;
+}
+
+.error {
+    color: red;
+    font-size: 0.8em;
+}
+
+button {
+    margin-top: 10px;
+}

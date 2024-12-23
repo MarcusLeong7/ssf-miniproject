@@ -10,6 +10,7 @@ import vttp.ssf.mini_project.service.MealService;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Controller
@@ -74,27 +75,13 @@ public class MealController {
 
         System.out.println("Selected Meals:" + selectedMeals);
 
-        // Calculate total calories and macronutrients
-        int totalCalories = selectedMeals.stream()
-                .mapToInt(meal -> Integer.parseInt(meal.getCalories()))
-                .sum();
-        int totalProtein = selectedMeals.stream()
-                .mapToInt(meal -> Integer.parseInt(meal.getProtein().replace("g", "")))
-                .sum();
-        int totalFats = selectedMeals.stream()
-                .mapToInt(meal -> Integer.parseInt(meal.getFats().replace("g", "")))
-                .sum();
-        int totalCarbs = selectedMeals.stream()
-                .mapToInt(meal -> Integer.parseInt(meal.getCarbs().replace("g", "")))
-                .sum();
+       Map<String,Integer> totals = mealSvc.calculateNutritionTotals(selectedMeals);
 
-        // Success message
-        model.addAttribute("message", "These meals have been selected!");
         model.addAttribute("meals", selectedMeals);
-        model.addAttribute("totalCalories", totalCalories);
-        model.addAttribute("totalProtein", totalProtein);
-        model.addAttribute("totalFats", totalFats);
-        model.addAttribute("totalCarbs", totalCarbs);
+        model.addAttribute("totalCalories", totals.get("totalCalories"));
+        model.addAttribute("totalProtein", totals.get("totalProtein"));
+        model.addAttribute("totalFats", totals.get("totalFats"));
+        model.addAttribute("totalCarbs", totals.get("totalCarbs"));
 
         return "selectedmeals";
 

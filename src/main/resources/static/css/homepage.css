@@ -1,0 +1,83 @@
+/* Set a background image for the page */
+body {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    background: url('/images/Salmon.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: white; /* Make all text white by default */
+    font-weight: bold; /* Make text bold globally */
+}
+
+/* Add a semi-transparent overlay */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Black overlay with 50% opacity */
+    z-index: -1; /* Keep it behind the content */
+}
+
+.h2{
+    text-align: left ;
+}
+/* Make only the query labels white */
+.form-label {
+    color: white;
+    font-weight: bold;
+}
+
+/* Style the input fields for better readability */
+.form-control {
+    background-color: rgba(255, 255, 255, 0.2); /* Slightly transparent background */
+    color: white; /* Make input text white */
+    border: 1px solid white; /* White border for better visibility */
+}
+
+/* Change placeholder text color */
+::placeholder {
+    color: rgba(255, 255, 255, 0.7); /* Make placeholder text white with some transparency */
+}
+
+
+/* Style for the red error message */
+.bold-red {
+    color: red;
+    font-weight: bold;
+}
+
+/* Additional styles for cards */
+.card-title {
+    color: black; /* Ensure card titles are white */
+}
+
+p {
+    color: black; /* Ensure all paragraph text is white */
+}
+
+label {
+    color: black; /* Ensure form labels are white */
+}
+
+/* Customize buttons */
+.btn-primary {
+    background-color: #85e3c2;
+    border-color: #9ce1c2;
+    color: white;
+}
+
+.btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+    color: white;
+}
+
+/* Adjust form input box styles */
+.form-control {
+    background-color: rgba(255, 255, 255, 0.8);
+    color: black; /* Keep input text legible */
+    font-weight: normal;
+}

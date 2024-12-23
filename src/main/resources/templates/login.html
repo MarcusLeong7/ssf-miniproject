@@ -2,56 +2,85 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/login.css">
 </head>
 <body>
-<div class="container">
+
+<div class="header">
+    <h1>Nutrition Plan</h1>
+    <button id="toggle-login"
+            style="padding: 10px 20px; background-color: #216e03; color: #ffffff; border: none; border-radius: 5px; cursor: pointer;">
+        Login
+    </button>
+</div>
+
+<div class="container" id="login-container">
     <h1>Welcome!</h1>
     <p>Log in to manage your nutrition goals.</p>
     <p th:if="${error}" th:text="${error}" class="error"></p>
-<form method="POST" action="/process-login" th:object="${user}">
-    <table>
-        <!--Email Field-->
-        <tr>
-            <td>Email:</td>
-            <td>
-                <label>
-                    <input type="text" th:field="*{email}">
-                </label>
-            </td>
-            <td>
-						<span data-th-if="${#fields.hasErrors('email')}"
-                              data-th-errors="*{email}" class="error">
-						</span>
-            </td>
-        </tr>
+    <form method="POST" action="/process-login" th:object="${user}">
+        <table>
+            <!-- Email Field -->
+            <tr>
+                <td>Email:</td>
+                <td>
+                    <label>
+                        <input type="text" th:field="*{email}">
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <span data-th-if="${#fields.hasErrors('email')}"
+                          data-th-errors="*{email}" class="error"></span>
+                </td>
+            </tr>
 
-        <!--Password Field-->
-        <tr>
-            <td>Password:</td>
-            <td>
-                <label>
-                    <input type="password" th:field="*{password}">
-                </label>
-            </td>
-            <td>
-						<span data-th-if="${#fields.hasErrors('password')}"
-                              data-th-errors="*{password}" class="error">
-						</span>
-            </td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>
-                <button type="submit">Login</button>
-                <button type="submit" formaction="/register">Sign Up</button>
-            </td>
-        </tr>
-    </table>
-</form>
+            <!-- Password Field -->
+            <tr>
+                <td>Password:</td>
+                <td>
+                    <label>
+                        <input type="password" th:field="*{password}">
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <span data-th-if="${#fields.hasErrors('password')}"
+                          data-th-errors="*{password}" class="error"></span>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <button type="submit">Login</button>
+                    <button type="submit" formaction="/register">Sign Up</button>
+                </td>
+            </tr>
+        </table>
+    </form>
 </div>
 
+<script>
+    const toggleLoginButton = document.getElementById('toggle-login');
+    const loginContainer = document.getElementById('login-container');
+
+    // Check localStorage on page load
+    if (localStorage.getItem('loginFormVisible') === 'true') {
+        loginContainer.classList.add('active');
+    }
+
+    toggleLoginButton.addEventListener('click', () => {
+        const isActive = loginContainer.classList.toggle('active');
+        // Save the visibility state in localStorage
+        localStorage.setItem('loginFormVisible', isActive);
+    });
+</script>
 
 </body>
 </html>

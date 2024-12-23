@@ -16,7 +16,9 @@ import vttp.ssf.mini_project.model.Meal;
 
 import java.io.StringReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class MealService {
@@ -132,6 +134,41 @@ public class MealService {
 
         return recipeUrl;
     }
+
+    public Map<String, Integer> calculateNutritionTotals(List<Meal> selectedMeals) {
+        // Initialize totals
+        int totalCalories = 0;
+        int totalProtein = 0;
+        int totalFats = 0;
+        int totalCarbs = 0;
+
+        // Iterate through each meal to calculate totals
+        for (Meal meal : selectedMeals) {
+            totalCalories += parseIntOrDefault(meal.getCalories());
+            totalProtein += parseIntOrDefault(meal.getProtein().replace("g", ""));
+            totalFats += parseIntOrDefault(meal.getFats().replace("g", ""));
+            totalCarbs += parseIntOrDefault(meal.getCarbs().replace("g", ""));
+        }
+        // Create a map to store the totals
+        Map<String, Integer> totals = new HashMap<>();
+        totals.put("totalCalories", totalCalories);
+        totals.put("totalProtein", totalProtein);
+        totals.put("totalFats", totalFats);
+        totals.put("totalCarbs", totalCarbs);
+
+        return totals;
+    }
+
+    // Helper method to safely parse integers with a default value
+    private int parseIntOrDefault(String value) {
+        try {
+            return Integer.parseInt(value);
+        } catch (NumberFormatException e) {
+            return 0; // Return 0 if parsing fails
+        }
+    }
+
+
 
 
 }

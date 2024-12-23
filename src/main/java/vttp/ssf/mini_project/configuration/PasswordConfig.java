@@ -24,6 +24,7 @@ public class PasswordConfig {
                                 "/search",
                                 "/recipes/{id}/information",
                                 "/selected-meals",
+                                "/images/**",
                                 "/css/**",
                                 "/js/**",
                                 "/favicon.ico" ).permitAll()

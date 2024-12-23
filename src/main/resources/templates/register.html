@@ -16,6 +16,9 @@
                 <td>
                     <input type="text" id="email" th:field="*{email}" placeholder="Enter your email">
                 </td>
+            </tr>
+            <tr>
+                <td></td>
                 <td>
                     <span data-th-if="${#fields.hasErrors('email')}"
                           data-th-errors="*{email}" class="error"></span>
@@ -28,6 +31,9 @@
                 <td>
                     <input type="text" id="password" th:field="*{password}" placeholder="Enter your password">
                 </td>
+            </tr>
+            <tr>
+                <td></td>
                 <td>
                     <span data-th-if="${#fields.hasErrors('password')}"
                           data-th-errors="*{password}" class="error"></span>
