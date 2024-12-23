@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Selected Meals</title>
+</head>
+
+<!-- Message container -->
+<div th:if="${message!=null}">
+    <p th:text="${message}" class="bold-red"></p>
+</div>
+
+<!-- Check if the meals list is empty -->
+<div th:if="${#lists.isEmpty(meals)}" class="text-center mt-5">
+    <p class="text-danger">No meals matching the criteria is found.</p>
+</div>
+
+<div class="row" th:if="${!#lists.isEmpty(meals)}">
+    <div class="col-md-4 mb-4" th:each="meal : ${meals}">
+        <div class="card meal-card">
+            <img th:src="${meal.image}" alt="Meal Image" class="card-img-top">
+            <div class="card-body">
+                <h5 class="card-title" th:text="${meal.title}"></h5>
+                <p><strong>Calories:</strong> <span th:text="${meal.calories}"></span></p>
+                <p><strong>Protein:</strong> <span th:text="${meal.protein}"></span></p>
+                <p><strong>Fats:</strong> <span th:text="${meal.fats}"></span></p>
+                <p><strong>Carbs:</strong> <span th:text="${meal.carbs}"></span></p>
+                <p>
+                    <a th:href="@{/recipes/{id}/information(id=${meal.id})}" class="btn btn-link">View Recipe</a>
+                </p>
+                <label>
+                    <input type="checkbox" name="mealIds" th:value="${meal.id}">
+                    Select
+                </label>
+            </div>
+        </div>
+    </div>
+</div>
+
+<body>
+<!-- Nutrition Information -->
+<div class="mt-5" th:if="${totalCalories!=null}">
+    <h3 class="text-center">Total Nutritional Information</h3>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Total Calories</th>
+            <th>Total Protein (g)</th>
+            <th>Total Fats (g)</th>
+            <th>Total Carbs (g)</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td th:text="${totalCalories}"></td>
+            <td th:text="${totalProtein}"></td>
+            <td th:text="${totalFats}"></td>
+            <td th:text="${totalCarbs}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

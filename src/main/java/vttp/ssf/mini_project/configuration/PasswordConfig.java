@@ -23,6 +23,7 @@ public class PasswordConfig {
                                 "/process-login",
                                 "/search",
                                 "/recipes/{id}/information",
+                                "/selected-meals",
                                 "/css/**",
                                 "/js/**",
                                 "/favicon.ico" ).permitAll()
