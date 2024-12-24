@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Your Meal Plans</title>
+    <link rel="stylesheet" href="/css/mealplans.css">
+</head>
+<body>
+<div class="container">
+    <h1>Saved Meal Plans</h1>
+
+    <div th:if="${error}" class="alert alert-danger">
+        <p th:text="${error}"></p>
+    </div>
+
+    <div th:if="${#lists.isEmpty(mealPlans)}">
+        <p>You don't have any meal plans yet.</p>
+    </div>
+
+    <div th:if="${!#lists.isEmpty(mealPlans)}">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="plan : ${mealPlans}">
+                <td th:text="${plan.name}"></td>
+                <td>
+                    <a th:href="@{/mealplans/{id}(id=${plan.id})}" class="custom-btn view">View</a>
+                    <form th:action="@{/mealplans/{id}/delete(id=${plan.id})}" method="post" style="display:inline;">
+                        <button type="submit" class="custom-btn delete">Delete</button>
+                    </form>
+                    <a th:href="@{/mealplans/{id}/edit(id=${plan.id})}" class="custom-btn edit">Edit</a>
+                </td>
+            </tr>
+
+
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>
