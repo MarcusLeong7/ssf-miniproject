@@ -97,9 +97,7 @@ public class MealPlanController {
 
         return "meal-information";
 
-
     }
-
 
 
 }
