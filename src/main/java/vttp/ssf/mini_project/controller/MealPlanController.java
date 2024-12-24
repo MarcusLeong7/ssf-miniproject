@@ -65,9 +65,8 @@ public class MealPlanController {
         mealplan.setUserEmail(userEmail);
         mealplan.setName(planName);
         mealplan.setMealIds(selectedMealIds);
-        System.out.println("test1");
         mealPlanSvc.insert(mealplan);
-        System.out.println("test3");
+
 
         model.addAttribute("message", "Meal plan successfully saved.");
 

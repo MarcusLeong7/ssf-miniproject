@@ -1,6 +1,5 @@
 package vttp.ssf.mini_project.model;
 
-import java.time.LocalDate;
 import java.util.List;
 
 public class MealPlan {
@@ -9,18 +8,15 @@ public class MealPlan {
     private String name;
     private String userEmail;
     private List<String> mealIds;
-    private LocalDate day;
-
 
     public MealPlan() {
     }
 
-    public MealPlan(String id, String name, String userEmail, List<String> mealIds, LocalDate day) {
+    public MealPlan(String id, String name, String userEmail, List<String> mealIds) {
         this.id = id;
         this.name = name;
         this.userEmail = userEmail;
         this.mealIds = mealIds;
-        this.day = day;
     }
 
     public String getId() {
@@ -55,14 +51,6 @@ public class MealPlan {
         this.mealIds = mealIds;
     }
 
-    public LocalDate getDay() {
-        return day;
-    }
-
-    public void setDay(LocalDate day) {
-        this.day = day;
-    }
-
     @Override
     public String toString() {
         return "MealPlan{" +
@@ -70,7 +58,6 @@ public class MealPlan {
                 ", name='" + name + '\'' +
                 ", userEmail='" + userEmail + '\'' +
                 ", mealIds=" + mealIds +
-                ", day=" + day +
                 '}';
     }
 }

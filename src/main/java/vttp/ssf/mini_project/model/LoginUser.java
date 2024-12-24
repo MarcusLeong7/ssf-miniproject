@@ -3,7 +3,6 @@ package vttp.ssf.mini_project.model;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
-import vttp.ssf.mini_project.validation.ValidPassword;
 
 public class LoginUser {
 

@@ -23,7 +23,6 @@ public class MealPlanService {
         String id = UUID.randomUUID().toString().substring(0, 8);
         mealPlan.setId(id);
         mealPlanRepo.save(mealPlan);
-        System.out.println("test2");
     }
 
     public List<MealPlan> findAllPlansForUser(String userEmail) {
