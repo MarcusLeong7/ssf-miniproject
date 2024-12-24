@@ -39,7 +39,7 @@ body::before {
 
 /* Change placeholder text color */
 ::placeholder {
-    color: rgba(255, 255, 255, 0.7); /* Make placeholder text white with some transparency */
+    color: rgba(0, 0, 0, 0.8); /* Make placeholder text white with some transparency */
 }
 
 
@@ -64,8 +64,8 @@ label {
 
 /* Customize buttons */
 .btn-primary {
-    background-color: #85e3c2;
-    border-color: #9ce1c2;
+    background-color: #28a745;
+    border-color: #28a745;
     color: white;
 }
 
@@ -80,4 +80,34 @@ label {
     background-color: rgba(255, 255, 255, 0.8);
     color: black; /* Keep input text legible */
     font-weight: normal;
+}
+
+/* Container for aligning the form to the right */
+.form-container {
+    display: flex; /* Enables flexbox layout */
+    justify-content: center; /* Aligns content to the center */
+    padding: 20px; /* Optional padding for spacing */
+    box-sizing: border-box;
+}
+
+button {
+    padding: 6px 12px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #28a745; /* Primary green background */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+button:hover {
+    background-color: #22a640; /* Darker green on hover */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+button:active {
+    background-color: #13802b; /* Even darker green on click */
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
 }

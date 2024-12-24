@@ -22,10 +22,10 @@ public class MealController {
 
     @GetMapping("/search")
     public String getMeals(
-            @RequestParam(required = false, defaultValue = "0") Integer maxCalories,
-            @RequestParam(required = false) String minProtein,
-            @RequestParam(required = false) String maxCarbs,
-            @RequestParam(required = false) String maxFats,
+            @RequestParam(required = false, defaultValue = "1000") Integer maxCalories,
+            @RequestParam(required = false, defaultValue = "0") String minProtein,
+            @RequestParam(required = false, defaultValue = "100") String maxCarbs,
+            @RequestParam(required = false, defaultValue = "100") String maxFats,
             Model model,
             HttpSession session
     ) {
