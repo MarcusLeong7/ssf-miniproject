@@ -84,12 +84,19 @@ label {
 
 /* Container for aligning the form to the right */
 .form-container {
-    display: flex; /* Enables flexbox layout */
-    justify-content: center; /* Aligns content to the center */
-    padding: 20px; /* Optional padding for spacing */
-    box-sizing: border-box;
+    display: flex; /* Enable flexbox */
+    align-items: center;
+    justify-content: center; /* Align items to the center */
+    gap: 10px; /* Space between input and button */
 }
 
+input[type="text"] {
+    padding: 6px 10px; /* Add padding inside the input */
+    font-size: 14px; /* Adjust font size */
+    border: 1px solid #ccc; /* Add a border */
+    border-radius: 5px; /* Rounded corners */
+    flex-grow: 1; /* Make input take up available space */
+}
 button {
     padding: 6px 12px;
     font-size: 14px;

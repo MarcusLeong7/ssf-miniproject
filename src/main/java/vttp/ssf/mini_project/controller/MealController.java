@@ -35,6 +35,7 @@ public class MealController {
         List<Meal> meals = mealSvc.getMeals(maxCalories, minProtein, maxCarbs, maxFats);
 
         // Store list of meals in the session
+        // Set API data for caching
         session.setAttribute("meals", meals);
         // Add data to the model
         model.addAttribute("meals", meals);

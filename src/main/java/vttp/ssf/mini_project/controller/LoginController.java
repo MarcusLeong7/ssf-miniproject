@@ -1,5 +1,6 @@
 package vttp.ssf.mini_project.controller;
 
+import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -61,7 +62,7 @@ public class LoginController {
     // Process login form submission
     @PostMapping("/process-login")
     public String processLogin(@Valid @ModelAttribute("user") LoginUser loginuser,
-                               BindingResult bindingResult, Model model) {
+                               BindingResult bindingResult, Model model, HttpSession session) {
 
 
         if (bindingResult.hasErrors()) {
@@ -79,6 +80,7 @@ public class LoginController {
         System.out.println(">>> Authentication result: " + isAuthenticated);
 */
         if (isAuthenticated) {
+            session.setAttribute("userEmail",loginuser.getEmail());
             model.addAttribute("message", "Login successful!");
             return "home";
         } else {
@@ -87,5 +89,12 @@ public class LoginController {
         }
 
     }
+
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate(); // Invalidate the session
+        return "redirect:/login"; // Redirect to login page
+    }
+
 
 }

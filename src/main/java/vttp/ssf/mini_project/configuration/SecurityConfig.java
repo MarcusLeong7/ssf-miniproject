@@ -24,6 +24,8 @@ public class SecurityConfig {
                                 "/search",
                                 "/recipes/{id}/information",
                                 "/selected-meals",
+                                "/mealplans",
+                                "/mealplans/save-meal-plan",
                                 "/images/**",
                                 "/css/**",
                                 "/js/**",

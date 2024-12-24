@@ -61,13 +61,27 @@
     </table>
 </div>
 <div class="form-container">
-    <form method="post" action="/save-meal-plan">
-        <label>
-            <input type="text" name="planName" placeholder="Enter Meal Plan Name" required>
-        </label>
-        <button type="submit">Save as Meal Plan</button>
+    <form method="post" action="/mealplans/save-meal-plan">
+        <table>
+            <tr>
+                <!-- Field for the Meal Plan Name -->
+                <td>
+                    <input type="text" name="planName" placeholder="Enter Meal Plan Name" required>
+                </td>
+                <td>
+                    <!-- Hidden Inputs for Meal IDs -->
+                    <div th:each="meal : ${meals}">
+                        <input type="hidden" name="mealIds" th:value="${meal.id}">
+                    </div>
+                    <button type="submit">Save as Meal Plan</button>
+                </td>
+            </tr>
+        </table>
+
     </form>
 </div>
+
+
 
 
 <!-- Bootstrap JS -->
