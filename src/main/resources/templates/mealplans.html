@@ -29,7 +29,7 @@
             <tr th:each="plan : ${mealPlans}">
                 <td th:text="${plan.name}"></td>
                 <td>
-                    <a th:href="@{/mealplans/{id}(id=${plan.id})}" class="custom-btn view">View</a>
+                    <a th:href="@{/mealplans/{mealPlanId}(mealPlanId=${plan.id})}" class="custom-btn view">View</a>
                     <form th:action="@{/mealplans/{id}/delete(id=${plan.id})}" method="post" style="display:inline;">
                         <button type="submit" class="custom-btn delete">Delete</button>
                     </form>

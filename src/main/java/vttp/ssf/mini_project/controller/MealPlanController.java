@@ -4,13 +4,11 @@ import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import vttp.ssf.mini_project.model.Meal;
 import vttp.ssf.mini_project.model.MealPlan;
 import vttp.ssf.mini_project.service.MealPlanService;
+import vttp.ssf.mini_project.service.MealService;
 
 import java.util.List;
 
@@ -20,6 +18,9 @@ public class MealPlanController {
 
     @Autowired
     private MealPlanService mealPlanSvc;
+
+    @Autowired
+    private MealService mealSvc;
 
 
     // Method to display all meal plan ids for individual user
@@ -71,6 +72,32 @@ public class MealPlanController {
         model.addAttribute("message", "Meal plan successfully saved.");
 
         return "redirect:/mealplans";
+    }
+
+    @GetMapping("/{mealPlanId}")
+    public String displayMealPlan(
+            @PathVariable String mealPlanId,
+            HttpSession session, Model model) {
+
+        // Get user session
+        String userEmail = (String) session.getAttribute("userEmail");
+        if (userEmail == null) {
+            model.addAttribute("error", "User not logged in. Please log in to view meal plans.");
+            return "login";
+        }
+
+        // Retrieve mealplan id
+        MealPlan mealplan = mealPlanSvc.findById(userEmail,mealPlanId);
+        // Retrieve all the meals within mealplan
+        List<String> mealIds = mealplan.getMealIds();
+        List<Meal> meals = mealSvc.getSelectedMeals(mealIds);
+
+        model.addAttribute("mealplan",mealplan);
+        model.addAttribute("meals", meals);
+
+        return "meal-information";
+
+
     }
 
 

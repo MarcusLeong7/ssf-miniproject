@@ -4,6 +4,7 @@ import jakarta.json.Json;
 import jakarta.json.JsonArray;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonReader;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.http.RequestEntity;
@@ -13,6 +14,8 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.resource.ResourceUrlProvider;
 import org.springframework.web.util.UriComponentsBuilder;
 import vttp.ssf.mini_project.model.Meal;
+import vttp.ssf.mini_project.repository.MealPlanRepo;
+import vttp.ssf.mini_project.repository.MealRepo;
 
 import java.io.StringReader;
 import java.util.ArrayList;
@@ -23,16 +26,16 @@ import java.util.Map;
 @Service
 public class MealService {
 
-    private final ResourceUrlProvider mvcResourceUrlProvider;
+    @Autowired
+    private MealRepo mealRepo;
+
     @Value("${my.api.key}")
     private String API_KEY;
 
     public static final String NUTRIENTS_API_URL = "https://api.spoonacular.com/recipes/findByNutrients";
     public static final String RECIPES_API_URL = "https://api.spoonacular.com/recipes/{id}/information";
 
-    public MealService(ResourceUrlProvider mvcResourceUrlProvider) {
-        this.mvcResourceUrlProvider = mvcResourceUrlProvider;
-    }
+
 
     // https://api.spoonacular.com/recipes/findByNutrients
     // ?apiKey=apikey&minCarbs=10&maxCarbs=50&number=2
@@ -166,6 +169,21 @@ public class MealService {
         } catch (NumberFormatException e) {
             return 0; // Return 0 if parsing fails
         }
+    }
+
+    // Saving a meal
+    public void save(Meal meal) {
+        mealRepo.saveMeal(meal);
+    }
+
+    // Method to get a meal by ID
+    public Meal getMeal(String id) {
+        return mealRepo.findMealById(id);
+    }
+
+    // Method to get List of meals by their Ids
+    public List<Meal> getSelectedMeals(List<String> mealIds) {
+        return mealRepo.findMealsByIds(mealIds);
     }
 
 

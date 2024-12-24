@@ -69,6 +69,12 @@ public class MealController {
         }
 
         System.out.println(meals);
+
+        // Filter and save selected meals
+        meals.stream()
+                .filter(meal -> mealIds.contains(meal.getId())) // Filter selected meals
+                .forEach(meal -> mealSvc.save(meal)); // Save each selected meal
+
         //Filter and stream selected meals
         List<Meal> selectedMeals = meals.stream()
                 .filter(meal -> mealIds.contains(meal.getId()))

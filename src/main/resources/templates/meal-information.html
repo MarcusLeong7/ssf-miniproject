@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Meal Plan Information</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/mealplans.css"> <!-- Optional: Add specific styles -->
+</head>
+<body>
+<div class="container mt-5">
+  <h1 th:text="'Meal Plan: ' + ${mealplan.name}" class="text-center"></h1>
+  <hr>
+
+  <h2> Meals in Plan: </h2>
+  <div th:if="${#lists.isEmpty(meals)}" class="text-center mt-5">
+    <p class="text-danger">No meals are associated with this meal plan.</p>
+  </div>
+
+  <div class="row" th:if="${!#lists.isEmpty(meals)}">
+    <div class="col-md-4 mb-4" th:each="meal : ${meals}">
+      <div class="card meal-card">
+        <img th:src="${meal.image}" alt="Meal Image" class="card-img-top">
+        <div class="card-body">
+          <h5 class="card-title" th:text="${meal.title}"></h5>
+          <p><strong>Calories:</strong> <span th:text="${meal.calories}"></span></p>
+          <p><strong>Protein:</strong> <span th:text="${meal.protein}"></span></p>
+          <p><strong>Fats:</strong> <span th:text="${meal.fats}"></span></p>
+          <p><strong>Carbs:</strong> <span th:text="${meal.carbs}"></span></p>
+          <p>
+            <a th:href="@{/recipes/{id}/information(id=${meal.id})}" class="btn btn-link">View Recipe</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="text-center mt-4">
+    <a href="/mealplans" class="btn btn-primary">Back to Meal Plans</a>
+  </div>
+</div>
+
+<!-- Optional: Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
