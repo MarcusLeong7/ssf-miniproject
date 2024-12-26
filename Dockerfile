@@ -21,7 +21,7 @@ ARG WORK_DIR=/app
 
 WORKDIR ${WORK_DIR}
 
-COPY --from=builder /compiledir/target/noticeboard-0.0.1-SNAPSHOT.jar noticeboardApp.jar
+COPY --from=builder /compiledir/target/mini-project-0.0.1-SNAPSHOT.jar miniproject.jar
 
 ENV PORT=8080
 
@@ -36,4 +36,4 @@ EXPOSE ${PORT}
 HEALTHCHECK --interval=60s --timeout=5s --start-period=120s --retries=3 \
    CMD curl -s -f http://localhost:${PORT}/health || exit 1
 
-ENTRYPOINT SERVER_PORT=${PORT} java -jar noticeboardApp.jar
+ENTRYPOINT SERVER_PORT=${PORT} java -jar miniproject.jar
