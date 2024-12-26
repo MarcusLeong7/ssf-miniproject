@@ -6,7 +6,7 @@ import jakarta.validation.constraints.Pattern;
 
 public class User {
 
-    @Pattern(
+   @Pattern(
             regexp = "^[\\w\\.-]+@[\\w\\.-]+\\.[a-z]{2,}$",
             message = "Invalid email format. Please include a valid domain (e.g., .com, .org)."
     )
