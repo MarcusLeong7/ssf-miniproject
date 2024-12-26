@@ -80,7 +80,7 @@ public class LoginController {
         boolean isAuthenticated = userSvc.authenticate(loginuser.getEmail(), loginuser.getPassword());
 
         if (isAuthenticated) {
-            session.setAttribute("userEmail",loginuser.getEmail());
+            session.setAttribute("userEmail", loginuser.getEmail());
             model.addAttribute("message", "Login successful!");
             return "home";
         } else {
@@ -98,6 +98,7 @@ public class LoginController {
 
         if (userEmail == null) {
             model.addAttribute("error", "Please log in to access the homepage.");
+            model.addAttribute("user", new LoginUser());
             return "login"; // Redirect to login page if not authenticated
         }
 
@@ -105,40 +106,15 @@ public class LoginController {
         return "home";
     }
 
-   /* @GetMapping("/logout")
+    @GetMapping("/logout")
     public String logout(HttpSession session, HttpServletRequest request, HttpServletResponse response) {
         if (session != null) {
             session.removeAttribute("userEmail"); // Example: Remove specific attributes
-            System.out.println("Test 1");
             session.invalidate(); // Invalidate the session
-            System.out.println("Test 2");
         }
-
-        // Spring Security context logout if applicable
-        SecurityContextLogoutHandler logoutHandler = new SecurityContextLogoutHandler();
-        System.out.println("Test 3");
-        logoutHandler.logout(request, response, null);
-        System.out.println("Test 4");
+        
         return "redirect:/login"; // Redirect to login page
     }
-    */
-   @GetMapping("/logout")
-   public String logout(HttpSession session, HttpServletRequest request, HttpServletResponse response) {
-       if (session != null) {
-           logger.info("Session attributes before invalidation: ");
-           session.getAttributeNames().asIterator().forEachRemaining(attr -> logger.info(attr + ": " + session.getAttribute(attr)));
-           session.invalidate();
-           logger.info("Session invalidated.");
-       } else {
-           logger.info("No session to invalidate.");
-       }
-
-       SecurityContextLogoutHandler logoutHandler = new SecurityContextLogoutHandler();
-       logoutHandler.logout(request, response, null);
-       logger.info("Security context logout completed.");
-       return "redirect:/login";
-   }
-
 
 
 }

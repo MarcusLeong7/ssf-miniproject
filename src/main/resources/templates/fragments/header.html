@@ -23,7 +23,8 @@
                 <!-- "View Meal Plans" Button -->
                 <a href="/mealplans" class="btn btn-sm btn-outline-secondary">View Meal Plans</a>
                 <!-- "Logout" Button -->
-                <form action="/logout" method="get" style="margin-left: 10px;">
+                <form action="/logout" method="post" style="margin-left: 10px;">
+                    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
                     <button type="submit" class="btn btn-sm btn-danger">Logout</button>
                 </form>
             </div>
