@@ -39,12 +39,8 @@ public class SecurityConfig {
                         .defaultSuccessUrl("/home", true)// Redirect after successful login
                         .failureUrl("/login?error=true")
                         .permitAll()
-                )
-                .logout(logout -> logout
-                        .logoutUrl("/logout")
-                        .logoutSuccessUrl("/user/login?logout")
-                        .permitAll()
                 );
+
         return http.build();
     }
 }

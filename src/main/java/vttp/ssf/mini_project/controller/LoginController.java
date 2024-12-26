@@ -1,9 +1,14 @@
 package vttp.ssf.mini_project.controller;
 
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,6 +23,8 @@ import vttp.ssf.mini_project.service.UserService;
 @Controller
 @RequestMapping
 public class LoginController {
+
+    private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
     @Autowired
     private UserService userSvc;
@@ -66,7 +73,7 @@ public class LoginController {
 
         if (bindingResult.hasErrors()) {
             System.out.println(">>> Binding errors: " + bindingResult.getAllErrors());
-            model.addAttribute("user", loginuser); // Retain the user input
+            model.addAttribute("user", loginuser);
             return "login"; // Reload the login page
         }
 
@@ -94,16 +101,44 @@ public class LoginController {
             return "login"; // Redirect to login page if not authenticated
         }
 
-        // Add any additional logic/data to the model for the homepage if needed
         model.addAttribute("message", "Welcome back, " + userEmail + "!");
-        return "home"; // Replace with your homepage template name
+        return "home";
     }
 
-    @GetMapping("/logout")
-    public String logout(HttpSession session) {
-        session.invalidate(); // Invalidate the session
+   /* @GetMapping("/logout")
+    public String logout(HttpSession session, HttpServletRequest request, HttpServletResponse response) {
+        if (session != null) {
+            session.removeAttribute("userEmail"); // Example: Remove specific attributes
+            System.out.println("Test 1");
+            session.invalidate(); // Invalidate the session
+            System.out.println("Test 2");
+        }
+
+        // Spring Security context logout if applicable
+        SecurityContextLogoutHandler logoutHandler = new SecurityContextLogoutHandler();
+        System.out.println("Test 3");
+        logoutHandler.logout(request, response, null);
+        System.out.println("Test 4");
         return "redirect:/login"; // Redirect to login page
     }
+    */
+   @GetMapping("/logout")
+   public String logout(HttpSession session, HttpServletRequest request, HttpServletResponse response) {
+       if (session != null) {
+           logger.info("Session attributes before invalidation: ");
+           session.getAttributeNames().asIterator().forEachRemaining(attr -> logger.info(attr + ": " + session.getAttribute(attr)));
+           session.invalidate();
+           logger.info("Session invalidated.");
+       } else {
+           logger.info("No session to invalidate.");
+       }
+
+       SecurityContextLogoutHandler logoutHandler = new SecurityContextLogoutHandler();
+       logoutHandler.logout(request, response, null);
+       logger.info("Security context logout completed.");
+       return "redirect:/login";
+   }
+
 
 
 }
