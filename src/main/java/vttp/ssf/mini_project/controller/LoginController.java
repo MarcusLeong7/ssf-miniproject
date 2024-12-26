@@ -24,7 +24,6 @@ import vttp.ssf.mini_project.service.UserService;
 @RequestMapping
 public class LoginController {
 
-    private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
     @Autowired
     private UserService userSvc;
@@ -112,7 +111,6 @@ public class LoginController {
             session.removeAttribute("userEmail"); // Example: Remove specific attributes
             session.invalidate(); // Invalidate the session
         }
-        
         return "redirect:/login"; // Redirect to login page
     }
 

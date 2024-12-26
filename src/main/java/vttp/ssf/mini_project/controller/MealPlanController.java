@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import vttp.ssf.mini_project.model.LoginUser;
 import vttp.ssf.mini_project.model.Meal;
 import vttp.ssf.mini_project.model.MealPlan;
 import vttp.ssf.mini_project.service.MealPlanService;
@@ -26,9 +27,11 @@ public class MealPlanController {
     // Method to display all meal plan ids for individual user
     @GetMapping
     public String displayMealPlansForUser(HttpSession session, Model model) {
+        // Check if session exists
         String userEmail = (String) session.getAttribute("userEmail");
         if (userEmail == null) {
             model.addAttribute("error", "User not logged in. Please log in to view meal plans.");
+            model.addAttribute("user", new LoginUser());
             return "login";
         }
         List<MealPlan> mealPlans = mealPlanSvc.findAllPlansForUser(userEmail);
@@ -85,6 +88,7 @@ public class MealPlanController {
         String userEmail = (String) session.getAttribute("userEmail");
         if (userEmail == null) {
             model.addAttribute("error", "User not logged in. Please log in to view meal plans.");
+            model.addAttribute("user", new LoginUser());
             return "login";
         }
 
