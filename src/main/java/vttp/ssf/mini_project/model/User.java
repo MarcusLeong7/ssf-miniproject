@@ -14,10 +14,28 @@ public class User {
     @NotBlank(message = "Email required")
     private String email;
     @NotBlank (message= "Password required!")
-    @Pattern(
-            regexp = "^(?=.*[A-Z])(?=.*[@$!%*?&])(?=.*[a-zA-Z0-9]).{8,}$",
-            message = "Password must be at least 8 characters long and include uppercase, lowercase, digits, and special characters"
-    )
+    @Pattern.List({
+            @Pattern(
+                    regexp = ".*[A-Z].*",
+                    message = "Password must include an uppercase character."
+            ),
+            @Pattern(
+                    regexp = ".*[a-z].*",
+                    message = "Password must include a lowercase character."
+            ),
+            @Pattern(
+                    regexp = ".*\\d.*",
+                    message = "Password must include at least one digit."
+            ),
+            @Pattern(
+                    regexp = ".*[@$!%*?&].*",
+                    message = "Password must include at least one special character."
+            ),
+            @Pattern(
+                    regexp = ".{8,}",
+                    message = "Password must be at least 8 characters long."
+            )
+    })
     private String password;
 
     public User() {

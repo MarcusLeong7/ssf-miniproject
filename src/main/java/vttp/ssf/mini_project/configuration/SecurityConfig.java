@@ -1,5 +1,6 @@
 package vttp.ssf.mini_project.configuration;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -9,6 +10,12 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 public class SecurityConfig {
+
+    @Value("${spring.security.user.name}")
+    private String SPRING_SECURITY_USER_NAME;
+
+    @Value("${spring.security.user.password}")
+    private String SPRING_SECURITY_USER_PASSWORD;
 
     @Bean
     public PasswordEncoder passwordEncoder(){
