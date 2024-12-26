@@ -74,10 +74,12 @@ public class MealPlanController {
         return "redirect:/mealplans";
     }
 
+
+    // Get mapping for individual meal plan
     @GetMapping("/{mealPlanId}")
     public String displayMealPlan(
             @PathVariable String mealPlanId,
-            HttpSession session, Model model) {
+             Model model, HttpSession session) {
 
         // Get user session
         String userEmail = (String) session.getAttribute("userEmail");
@@ -99,5 +101,22 @@ public class MealPlanController {
 
     }
 
+    // PostMapping for deleting individual meal plan
+    @PostMapping("/{mealPlanId}/delete")
+    public String deleteMealPlan(
+            @PathVariable String mealPlanId,
+            Model model, HttpSession session) {
+
+        // Get user session
+        String userEmail = (String) session.getAttribute("userEmail");
+        if (userEmail == null) {
+            model.addAttribute("error", "User not logged in. Please log in to view meal plans.");
+            return "login";
+        }
+
+        mealPlanSvc.deleteById(userEmail,mealPlanId);
+        model.addAttribute("message", "Meal plan successfully deleted.");
+        return "redirect:/mealplans";
+    }
 
 }

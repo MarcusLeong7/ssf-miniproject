@@ -9,6 +9,7 @@
 <div class="container">
     <h1>Create Your Account</h1>
     <form method="POST" action="/registered" th:object="${user}">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
         <table>
             <!-- Email Field -->
             <tr>

@@ -1,10 +1,10 @@
 /* Set a background image for the page */
 body {
-    display: flex;
+/*    display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    position: relative;
+    position: relative;*/
     margin: 0;
     padding: 0;
     background: url('/images/Salmon.jpg') no-repeat center center fixed;
@@ -23,27 +23,6 @@ body::before {
     height: 100%;
     background: rgba(0, 0, 0, 0.5); /* Black overlay with 50% opacity */
     z-index: -1; /* Keep it behind the content */
-}
-
-.h2{
-    text-align: left ;
-}
-/* Make only the query labels white */
-.form-label {
-    color: white;
-    font-weight: bold;
-}
-
-/* Style the input fields for better readability */
-.form-control {
-    background-color: rgba(255, 255, 255, 0.2); /* Slightly transparent background */
-    color: white; /* Make input text white */
-    border: 1px solid white; /* White border for better visibility */
-}
-
-/* Change placeholder text color */
-::placeholder {
-    color: rgba(0, 0, 0, 0.8); /* Make placeholder text white with some transparency */
 }
 
 
@@ -79,20 +58,6 @@ label {
     color: white;
 }
 
-/* Adjust form input box styles */
-.form-control {
-    background-color: rgba(255, 255, 255, 0.8);
-    color: black; /* Keep input text legible */
-    font-weight: normal;
-}
-
-/* Container for aligning the form to the right */
-.form-container {
-    display: flex; /* Enable flexbox */
-    align-items: center;
-    justify-content: center; /* Align items to the center */
-    gap: 10px; /* Space between input and button */
-}
 
 input[type="text"] {
     padding: 6px 10px; /* Add padding inside the input */
@@ -136,11 +101,11 @@ button:active {
 }
 
 .custom-btn.view {
-    background-color: #5068e6; /* Info color */
+    background-color: #b28dda; /* Info color */
 }
 
 .custom-btn.view:hover {
-    background-color: #3a56ea;
+    background-color: #b154e1;
 }
 
 .custom-btn.delete {
@@ -151,14 +116,6 @@ button:active {
     background-color: #c82333;
 }
 
-.custom-btn.edit {
-    background-color: #b28dda; /* Warning color */
-    color: #000;
-}
-
-.custom-btn.edit:hover {
-    background-color: #b154e1;
-}
 
 .table {
     margin-top: 20px; /* Adds spacing above the table */
@@ -170,8 +127,29 @@ button:active {
     border: 1px solid rgb(255, 255, 255); /* Light border around table cells */
     padding: 8px; /* Adds padding inside cells */
     text-align: left; /* Aligns text to the left */
+    color: white;
+    background-color: transparent;
 }
 
 .table th {
     font-weight: bold; /* Bold text for headers */
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    padding: 1rem;
+    color: white;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    margin-left: 1rem;
+}
+
+.navbar a:hover {
+    text-decoration: underline;
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Meal Plan Information</title>
@@ -7,6 +7,8 @@
   <link rel="stylesheet" href="/css/mealplans.css"> <!-- Optional: Add specific styles -->
 </head>
 <body>
+<div th:insert="~{fragments/header :: header}"></div>
+
 <div class="container mt-5">
   <h1 th:text="'Meal Plan: ' + ${mealplan.name}" class="text-center"></h1>
   <hr>

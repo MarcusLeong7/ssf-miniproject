@@ -17,8 +17,7 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.csrf().disable()
-                .authorizeHttpRequests(authorize -> authorize
+        http.authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/register", "/registered","/",
                                 "/process-login",
                                 "/search",
@@ -27,6 +26,7 @@ public class SecurityConfig {
                                 "/mealplans",
                                 "/mealplans/save-meal-plan",
                                 "/mealplans/{mealPlanId}",
+                                "/mealplans/{mealPlanId}/delete",
                                 "/images/**",
                                 "/css/**",
                                 "/js/**",

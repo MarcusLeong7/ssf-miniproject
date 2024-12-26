@@ -64,21 +64,14 @@ public class LoginController {
     public String processLogin(@Valid @ModelAttribute("user") LoginUser loginuser,
                                BindingResult bindingResult, Model model, HttpSession session) {
 
-
         if (bindingResult.hasErrors()) {
             System.out.println(">>> Binding errors: " + bindingResult.getAllErrors());
             model.addAttribute("user", loginuser); // Retain the user input
             return "login"; // Reload the login page
         }
 
-       /* System.out.println(">>> No binding errors, proceeding with authentication...");
-        System.out.println(">>> Raw password from form: " + loginuser.getPassword());
-        System.out.println(">>> Email from form: " + loginuser.getEmail());*/
         boolean isAuthenticated = userSvc.authenticate(loginuser.getEmail(), loginuser.getPassword());
-       /* System.out.println(">>User email:" + loginuser.getEmail());
-        System.out.println(">>User password:" + loginuser.getPassword());
-        System.out.println(">>> Authentication result: " + isAuthenticated);
-*/
+
         if (isAuthenticated) {
             session.setAttribute("userEmail",loginuser.getEmail());
             model.addAttribute("message", "Login successful!");
@@ -88,6 +81,22 @@ public class LoginController {
             return "login";
         }
 
+    }
+
+    // GetMapping for Homepage
+    @GetMapping("/process-login")
+    public String showHomePage(HttpSession session, Model model) {
+        // Check if the user is logged in
+        String userEmail = (String) session.getAttribute("userEmail");
+
+        if (userEmail == null) {
+            model.addAttribute("error", "Please log in to access the homepage.");
+            return "login"; // Redirect to login page if not authenticated
+        }
+
+        // Add any additional logic/data to the model for the homepage if needed
+        model.addAttribute("message", "Welcome back, " + userEmail + "!");
+        return "home"; // Replace with your homepage template name
     }
 
     @GetMapping("/logout")

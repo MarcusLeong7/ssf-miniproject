@@ -49,6 +49,11 @@ body::before {
     font-weight: bold;
 }
 
+.message {
+    color: #ef9c1f;
+    font-weight: bold;
+}
+
 /* Additional styles for cards */
 .card-title {
     color: black; /* Ensure card titles are white */
@@ -154,4 +159,23 @@ button:active {
 
 .custom-btn.edit:hover {
     background-color: #e0a800;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    padding: 1rem;
+    color: white;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    margin-left: 1rem;
+}
+
+.navbar a:hover {
+    text-decoration: underline;
 }
