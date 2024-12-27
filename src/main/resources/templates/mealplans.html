@@ -25,12 +25,14 @@
         <table class="table">
             <thead>
             <tr>
+                <th>Meal Plan ID</th>
                 <th>Name</th>
                 <th>Actions</th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="plan : ${mealPlans}">
+                <td th:text="${plan.id}"></td>
                 <td th:text="${plan.name}"></td>
                 <td>
                     <a th:href="@{/mealplans/{mealPlanId}(mealPlanId=${plan.id})}" class="custom-btn view">View</a>
