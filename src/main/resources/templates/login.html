@@ -10,17 +10,13 @@
 
 <div class="header">
     <h1>Nutrition Plan</h1>
-    <button id="toggle-login"
-            style="padding: 10px 20px; background-color: #216e03; color: #ffffff; border: none; border-radius: 5px; cursor: pointer;">
-        Login
-    </button>
 </div>
 
 <div class="container" id="login-container">
     <h1>Welcome!</h1>
     <p>Log in to manage your nutrition goals.</p>
     <p th:if="${error}" th:text="${error}" class="error"></p>
-    <form method="POST" action="/process-login" th:object="${user}">
+    <form method="POST" action="/home" th:object="${user}">
         <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
         <table>
             <!-- Email Field -->
@@ -66,22 +62,5 @@
         </table>
     </form>
 </div>
-
-<script>
-    const toggleLoginButton = document.getElementById('toggle-login');
-    const loginContainer = document.getElementById('login-container');
-
-    // Check localStorage on page load
-    if (localStorage.getItem('loginFormVisible') === 'true') {
-        loginContainer.classList.add('active');
-    }
-
-    toggleLoginButton.addEventListener('click', () => {
-        const isActive = loginContainer.classList.toggle('active');
-        // Save the visibility state in localStorage
-        localStorage.setItem('loginFormVisible', isActive);
-    });
-</script>
-
 </body>
 </html>

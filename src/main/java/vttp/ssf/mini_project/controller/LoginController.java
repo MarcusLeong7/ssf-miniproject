@@ -67,7 +67,7 @@ public class LoginController {
     }
 
     // Process login form submission
-    @PostMapping("/process-login")
+    @PostMapping("/home")
     public String processLogin(@Valid @ModelAttribute("user") LoginUser loginuser,
                                BindingResult bindingResult, Model model, HttpSession session) {
 
@@ -91,7 +91,7 @@ public class LoginController {
     }
 
     // GetMapping for Homepage
-    @GetMapping("/process-login")
+    @GetMapping("/home")
     public String showHomePage(HttpSession session, Model model) {
         // Check if the user is logged in
         String userEmail = (String) session.getAttribute("userEmail");
