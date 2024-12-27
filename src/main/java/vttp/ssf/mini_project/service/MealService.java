@@ -11,10 +11,8 @@ import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.servlet.resource.ResourceUrlProvider;
 import org.springframework.web.util.UriComponentsBuilder;
 import vttp.ssf.mini_project.model.Meal;
-import vttp.ssf.mini_project.repository.MealPlanRepo;
 import vttp.ssf.mini_project.repository.MealRepo;
 
 import java.io.StringReader;

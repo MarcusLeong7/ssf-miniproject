@@ -1,7 +1,5 @@
 package vttp.ssf.mini_project.controller;
 
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +7,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,8 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import vttp.ssf.mini_project.model.LoginUser;
 import vttp.ssf.mini_project.model.User;
 import vttp.ssf.mini_project.service.UserService;
-
-import java.util.List;
 
 @Controller
 @RequestMapping
@@ -108,12 +103,12 @@ public class LoginController {
             return "login"; // Redirect to login page if not authenticated
         }
 
-        model.addAttribute("message", "Welcome back, " + userEmail + "!");
+        model.addAttribute("message", "Welcome Back, " + userEmail + "!");
         return "home";
     }
 
     @GetMapping("/logout")
-    public String logout(HttpSession session, HttpServletRequest request, HttpServletResponse response) {
+    public String logout(HttpSession session) {
         if (session != null) {
             session.removeAttribute("userEmail"); // Example: Remove specific attributes
             session.invalidate(); // Invalidate the session

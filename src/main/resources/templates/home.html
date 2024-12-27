@@ -9,14 +9,15 @@
 <div th:insert="~{fragments/header :: header}"></div>
 
 <div class="container mt-5">
-    <h1 class="text-center">Meal Recipes</h1>
+    <h1 class="text-center">Nutrition Calculator</h1>
+    <hr>
 
     <!-- Message container -->
     <div th:if="${message!=null}">
         <p th:text="${message}" class="message"></p>
     </div>
 
-    <h2>Search Recipes</h2>
+    <h2>Search For Recipes:</h2>
 
     <!-- Query Input Form -->
     <form class="row g-3 mb-4" method="get" action="/search">
