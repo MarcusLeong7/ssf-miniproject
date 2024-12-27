@@ -34,7 +34,7 @@ public class LoginController {
 
     // Shows the registration form
     @PostMapping("/register")
-    public String showAddForm(Model model) {
+    public String showAddForm(Model model,HttpSession session) {
         model.addAttribute("user", new User());
         return "register"; // For registration of new account
     }
@@ -61,7 +61,13 @@ public class LoginController {
 
     // Shows the login page
     @GetMapping("/login")
-    public String showLoginPage(Model model) {
+    public String showLoginPage(Model model, HttpSession session) {
+
+        // Check if user session attribute exists
+        if (session.getAttribute("userEmail") != null) {
+            // Redirect to the homepage if already logged in
+            return "redirect:/home";
+        }
         model.addAttribute("user", new LoginUser());
         return "login";
     }
