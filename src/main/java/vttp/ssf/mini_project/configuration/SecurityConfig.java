@@ -34,6 +34,7 @@ public class SecurityConfig {
                                 "/mealplans/save-meal-plan",
                                 "/mealplans/{mealPlanId}",
                                 "/mealplans/{mealPlanId}/delete",
+                                "/api",
                                 "/api/meals",
                                 "/api/mealplans/{mealPlanId}",
                                 "/images/**",

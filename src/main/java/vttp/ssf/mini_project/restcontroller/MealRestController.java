@@ -41,15 +41,18 @@ public class MealRestController {
     public ResponseEntity<?> getMealPlanById(@RequestParam String userEmail , @PathVariable String mealPlanId) {
         // Retrieve meal plan by ID
         MealPlan mealPlan = mealPlanSvc.findById(userEmail,mealPlanId);
-        if (mealPlan == null) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("MealPlan with ID " + mealPlanId + " is not found.");
+        if (userEmail == null || userEmail.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("{User email parameter is required.");
         }
-
+        if (mealPlan == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("{MealPlan with ID " + mealPlanId + " is not found.}");
+        }
         // Retrieve associated meals
         List<Meal> meals = mealSvc.getSelectedMeals(mealPlan.getMealIds());
 
         // Build a map to be pass as response
         Map<String, Object> resp = new HashMap<>();
+        resp.put("status", "success");
         resp.put("MealPlan", mealPlan);
         resp.put("Meals", meals);
 

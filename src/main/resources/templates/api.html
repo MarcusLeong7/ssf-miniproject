@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Documentation</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/api.css">
+</head>
+<body>
+<div th:insert="~{fragments/header :: header}"></div>
+
+<div class="container mt-5">
+    <h1>API Documentation</h1>
+    <p> Overview of all available API endpoints.</p>
+
+    <h2>Endpoints</h2>
+    <div class="card mb-3">
+        <div class="card-header">
+            <strong>GET /api/meals</strong>
+        </div>
+        <div class="card-body">
+            <p><strong>Description:</strong> Retrieve meals based on filters.</p>
+            <p><strong>Query Parameters:</strong></p>
+            <ul>
+                <li><code>maxCalories</code> (optional, default: 1000)</li>
+                <li><code>minProtein</code> (optional, default: 0)</li>
+                <li><code>maxCarbs</code> (optional, default: 100)</li>
+                <li><code>maxFats</code> (optional, default: 100)</li>
+            </ul>
+            <p><strong>Response Example:</strong></p>
+            <button class="btn btn-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#mealsResponse"
+                    aria-expanded="false" aria-controls="mealsResponse">
+                Show Response
+            </button>
+            <div class="collapse mt-3" id="mealsResponse">
+            <pre><code>
+[
+    {
+        "id": "634927",
+        "title": "Best Potato Cheese Soup in a bread bowl",
+        "image": "https://img.spoonacular.com/recipes/634927-312x231.jpg",
+        "calories": "750",
+        "protein": "26g",
+        "carbs": "58g",
+        "fats": "45g"
+    },
+    {
+        "id": "640509",
+        "title": "Cream Cheese Stuffed Chicken Breasts",
+        "image": "https://img.spoonacular.com/recipes/640509-312x231.jpg",
+        "calories": "434",
+        "protein": "30g",
+        "carbs": "6g",
+        "fats": "32g"
+    },
+    {
+        "id": "643514",
+        "title": "Fresh Herb Omelette",
+        "image": "https://img.spoonacular.com/recipes/643514-312x231.jpg",
+        "calories": "317",
+        "protein": "17g",
+        "carbs": "4g",
+        "fats": "26g"
+    },
+    {
+        "id": "651994",
+        "title": "Miniature Fruit Tarts",
+        "image": "https://img.spoonacular.com/recipes/651994-312x231.jpg",
+        "calories": "482",
+        "protein": "15g",
+        "carbs": "89g",
+        "fats": "7g"
+    },
+    {
+        "id": "654571",
+        "title": "Panna Cotta with Raspberry and Orange Sauce",
+        "image": "https://img.spoonacular.com/recipes/654571-312x231.jpg",
+        "calories": "396",
+        "protein": "8g",
+        "carbs": "28g",
+        "fats": "27g"
+    },
+    {
+        "id": "657972",
+        "title": "Raw Chocolate Energy Bars",
+        "image": "https://img.spoonacular.com/recipes/657972-312x231.jpg",
+        "calories": "190",
+        "protein": "6g",
+        "carbs": "20g",
+        "fats": "10g"
+    },
+    {
+        "id": "658004",
+        "title": "Raw Vegan Blueberry Chocolate Crust \"Cheesecake",
+        "image": "https://img.spoonacular.com/recipes/658004-312x231.jpg",
+        "calories": "557",
+        "protein": "9g",
+        "carbs": "59g",
+        "fats": "36g"
+    },
+    {
+        "id": "715397",
+        "title": "Cheesy Chicken and Rice Casserole",
+        "image": "https://img.spoonacular.com/recipes/715397-312x231.jpg",
+        "calories": "464",
+        "protein": "31g",
+        "carbs": "21g",
+        "fats": "28g"
+    },
+    {
+        "id": "1459207",
+        "title": "Easy Sheet Pan Pancakes",
+        "image": "https://img.spoonacular.com/recipes/1459207-312x231.jpg",
+        "calories": "218",
+        "protein": "6g",
+        "carbs": "28g",
+        "fats": "8g"
+    },
+    {
+        "id": "1697687",
+        "title": "Spinach Mushroom Omelette with Parmesan",
+        "image": "https://img.spoonacular.com/recipes/1697687-312x231.jpg",
+        "calories": "237",
+        "protein": "17g",
+        "carbs": "4g",
+        "fats": "17g"
+    }
+]
+                </code></pre>
+            </div>
+        </div>
+
+        <div class="card mb-3">
+            <div class="card-header">
+                <strong>GET /api/mealplans/{mealPlanId}</strong>
+            </div>
+            <div class="card-body">
+                <p><strong>Description:</strong> Retrieve details of a meal plan by ID.</p>
+                <p><strong>Path Parameters:</strong></p>
+                <ul>
+                    <li><code>mealPlanId</code> (required)</li>
+                </ul>
+                <p><strong>Query Parameters:</strong></p>
+                <ul>
+                    <li><code>userEmail</code> (required)</li>
+                </ul>
+                <p><strong>Response Example:</strong></p>
+                <button class="btn btn-secondary" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#mealPlanResponse" aria-expanded="false" aria-controls="mealPlanResponse">
+                    Show Response
+                </button>
+                <div class="collapse mt-3" id="mealPlanResponse">
+            <pre><code>
+{
+    "MealPlan": {
+        "id": "2e9742e7",
+        "name": "Tues",
+        "userEmail": "joel@gmail.com",
+        "mealIds": [
+            "643514",
+            "651994"
+        ]
+    },
+    "Meals": [
+        {
+            "id": "643514",
+            "title": "Fresh Herb Omelette",
+            "image": "https://img.spoonacular.com/recipes/643514-312x231.jpg",
+            "calories": "317",
+            "protein": "17g",
+            "carbs": "4g",
+            "fats": "26g"
+        },
+        {
+            "id": "651994",
+            "title": "Miniature Fruit Tarts",
+            "image": "https://img.spoonacular.com/recipes/651994-312x231.jpg",
+            "calories": "482",
+            "protein": "15g",
+            "carbs": "89g",
+            "fats": "7g"
+        }
+    ],
+    "status": "success"
+}
+                </code></pre>
+                </div>
+            </div>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+</body>
+</html>
