@@ -28,7 +28,7 @@ public class LoginController {
 
 
     // Shows the registration form
-    @PostMapping("/register")
+    @GetMapping("/register")
     public String showAddForm(Model model,HttpSession session) {
         model.addAttribute("user", new User());
         return "register"; // For registration of new account

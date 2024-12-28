@@ -17,6 +17,29 @@
         <p th:text="${message}" class="message"></p>
     </div>
 
+    <section class="py-5 bg-light">
+        <div class="container text-center">
+            <div class="row">
+                <div class="col-md-4">
+                    <i class="bi bi-bowl-rice fs-1"></i>
+                    <h3>Delicious Recipes</h3>
+                    <p>We reinvented dishes to make them healthier and nutritious.</p>
+                </div>
+                <div class="col-md-4">
+                    <i class="bi bi-card-list fs-1"></i>
+                    <h3>Customizable Options</h3>
+                    <p>Pick what fits your needs. More meat? Less carbs? You choose!</p>
+                </div>
+                <div class="col-md-4">
+                    <i class="bi bi-truck fs-1"></i>
+                    <h3>Freshly Delivered</h3>
+                    <p>Get your meals delivered fresh and ready to enjoy!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
     <h2>Search For Recipes:</h2>
 
     <!-- Query Input Form -->
@@ -62,7 +85,7 @@
                         <p><strong>Fats:</strong> <span th:text="${meal.fats}"></span></p>
                         <p><strong>Carbs:</strong> <span th:text="${meal.carbs}"></span></p>
                         <p>
-                            <a th:href="@{/recipes/{id}/information(id=${meal.id})}" class="btn btn-link">View
+                            <a th:href="@{/recipes/{id}/information(id=${meal.id})}" class="btn btn-link" target="_blank">View
                                 Recipe</a>
                         </p>
                         <label>

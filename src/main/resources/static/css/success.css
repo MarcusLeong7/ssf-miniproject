@@ -28,11 +28,11 @@ h1 {
 }
 
 code {
-    background-color: #f1f5f9;
+    background-color: #ffffff;
     padding: 0.2rem 0.4rem;
     border-radius: 4px;
     font-size: 1rem;
-    color: #1e40af;
+    color: #2f56d3;
 }
 
 .icon {
@@ -48,18 +48,24 @@ p {
 }
 
 button {
-    background-color: #8caed3;
+    display: inline-block;
+    background-color: #2f56d3;
     color: #fff;
-    border: none;
+    font-size: 0.8rem;
+    font-weight: bold;
+    padding: 10px 20px;
     border-radius: 5px;
+    margin-top: 1rem;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease,transform 0.2s ease;
 }
 
 button:hover {
-    background-color: #45a049;
+    background-color: #1a3ea8;
+    transform: scale(1.03); /* Slight zoom effect */
 }
 
 button:active {
-    background-color: #3d8b40;
+    background-color: #162e87; /* Even darker blue for active state */
+    transform: scale(1.0);
 }

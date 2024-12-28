@@ -7,7 +7,7 @@ body {
     padding: 0;
 }
 .header {
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(0, 0, 0, 1);
     color: white;
     padding: 10px 20px;
     text-align: center;
@@ -41,4 +41,22 @@ table {
 
 button {
     margin-top: 10px;
+}
+
+.signup-prompt {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 1rem;
+    color: #454141;
+}
+
+.signup-link {
+    color: #38a4c5;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.signup-link:hover {
+    text-decoration: underline;
+    color: #2b9ec1;
 }
