@@ -179,10 +179,11 @@ public class MealService {
         return mealRepo.findMealById(id);
     }
 
-    // Method to get List of meals by their Ids
+    // Method to get List of meals by their Ids by session
     public List<Meal> getSelectedMeals(List<String> mealIds) {
         return mealRepo.findMealsByIds(mealIds);
     }
+
 
 
 

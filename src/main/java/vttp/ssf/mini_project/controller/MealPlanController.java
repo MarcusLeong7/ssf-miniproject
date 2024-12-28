@@ -12,6 +12,7 @@ import vttp.ssf.mini_project.service.MealPlanService;
 import vttp.ssf.mini_project.service.MealService;
 
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/mealplans")
@@ -98,8 +99,16 @@ public class MealPlanController {
         List<String> mealIds = mealplan.getMealIds();
         List<Meal> meals = mealSvc.getSelectedMeals(mealIds);
 
+        // Calculate total nutritional values
+        Map<String, Integer> totals = mealSvc.calculateNutritionTotals(meals);
+
+        // Add data to the model
         model.addAttribute("mealplan",mealplan);
         model.addAttribute("meals", meals);
+        model.addAttribute("totalCalories", totals.get("totalCalories"));
+        model.addAttribute("totalProtein", totals.get("totalProtein"));
+        model.addAttribute("totalFats", totals.get("totalFats"));
+        model.addAttribute("totalCarbs", totals.get("totalCarbs"));
 
         return "meal-information";
 

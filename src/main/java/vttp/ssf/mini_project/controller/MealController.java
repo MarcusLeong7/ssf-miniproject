@@ -54,7 +54,7 @@ public class MealController {
             @RequestParam(value = "mealIds", required = false) List<String> mealIds,
             Model model, HttpSession session) {
 
-        System.out.println(mealIds);
+        String sessionId = session.getId();
 
         // Retrieve meals from the session
         @SuppressWarnings("unchecked")
@@ -92,4 +92,42 @@ public class MealController {
 
     }
 
+    @GetMapping("/selected-meals")
+    public String fetchSavedMeals(
+            @RequestParam(value = "mealIds", required = false) List<String> mealIds,
+            Model model,HttpSession session) {
+
+        String sessionId = session.getId();
+
+        // Retrieve meals from the session
+        @SuppressWarnings("unchecked")
+        List<Meal> meals = (List<Meal>) session.getAttribute("meals");
+
+        if (mealIds == null || mealIds.isEmpty()) {
+            model.addAttribute("message", "No meals have been selected!");
+            return "home";
+        }
+
+        // Fetch saved meals from the service based on IDs
+        List<Meal> savedMeals = mealSvc.getSelectedMeals(mealIds);
+
+        if (savedMeals == null || savedMeals.isEmpty()) {
+            model.addAttribute("message", "No meals matching the selected IDs were found!");
+            return "home";
+        }
+
+        // Calculate total nutritional values
+        Map<String, Integer> totals = mealSvc.calculateNutritionTotals(savedMeals);
+
+        // Add data to the model
+        model.addAttribute("meals", savedMeals);
+        model.addAttribute("totalCalories", totals.get("totalCalories"));
+        model.addAttribute("totalProtein", totals.get("totalProtein"));
+        model.addAttribute("totalFats", totals.get("totalFats"));
+        model.addAttribute("totalCarbs", totals.get("totalCarbs"));
+
+        return "selectedmeals";
+    }
+
 }
+

@@ -4,21 +4,22 @@
   <meta charset="UTF-8">
   <title>Meal Plan Information</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="/css/mealplans.css"> <!-- Optional: Add specific styles -->
+  <link rel="stylesheet" href="/css/meal-information.css"> <!-- Optional: Add specific styles -->
 </head>
 <body>
 <div th:insert="~{fragments/header :: header}"></div>
 
-<div class="container mt-5">
+<section class="selected-meals-section py-5">
+<div class="container">
   <h1 th:text="'Meal Plan: ' + ${mealplan.name}" class="text-center"></h1>
-  <h2 th:text="'Meal Plan ID: ' + ${mealplan.id}" class="text-center"></h2>
   <hr>
 
-  <h2> Meals in Plan: </h2>
+  <!-- No Meals Message -->
   <div th:if="${#lists.isEmpty(meals)}" class="text-center mt-5">
     <p class="text-danger">No meals are associated with this meal plan.</p>
   </div>
 
+  <!-- Meal Cards -->
   <div class="row" th:if="${!#lists.isEmpty(meals)}">
     <div class="col-md-4 mb-4" th:each="meal : ${meals}">
       <div class="card meal-card">
@@ -30,17 +31,44 @@
           <p><strong>Fats:</strong> <span th:text="${meal.fats}"></span></p>
           <p><strong>Carbs:</strong> <span th:text="${meal.carbs}"></span></p>
           <p>
-            <a th:href="@{/recipes/{id}/information(id=${meal.id})}" class="btn btn-link">View Recipe</a>
+            <a th:href="@{/recipes/{id}/information(id=${meal.id})}" class="btn btn-outline-primary btn-sm">
+              View Recipe
+            </a>
           </p>
         </div>
       </div>
     </div>
   </div>
 
+  <hr class="my-5">
+  <!-- Nutrition Information -->
+  <div class="nutrition-table mt-5" th:if="${totalCalories!=null}">
+    <h3 class="text-center">Total Nutritional Information</h3>
+    <table class="table table-bordered text-center">
+      <thead class="table-light">
+      <tr>
+        <th>Total Calories</th>
+        <th>Total Protein (g)</th>
+        <th>Total Fats (g)</th>
+        <th>Total Carbs (g)</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td th:text="${totalCalories}"></td>
+        <td th:text="${totalProtein}"></td>
+        <td th:text="${totalFats}"></td>
+        <td th:text="${totalCarbs}"></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
   <div class="text-center mt-4">
     <a href="/mealplans" class="btn btn-primary">Back to Meal Plans</a>
   </div>
 </div>
+  </section>
 
 <!-- Optional: Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

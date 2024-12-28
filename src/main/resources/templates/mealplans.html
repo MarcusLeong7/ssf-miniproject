@@ -18,7 +18,7 @@
     </div>
 
     <div th:if="${#lists.isEmpty(mealPlans)}">
-        <p class="bold-red"> You don't have any meal plans yet.</p>
+        <p class="message"> You don't have any meal plans yet.</p>
     </div>
 
     <div th:if="${!#lists.isEmpty(mealPlans)}">

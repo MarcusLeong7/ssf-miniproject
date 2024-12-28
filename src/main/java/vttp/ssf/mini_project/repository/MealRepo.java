@@ -16,7 +16,7 @@ public class MealRepo {
     @Qualifier("redis-object")
     private RedisTemplate<String,Object> template;
 
-    // METHODS FOR MEALS
+    // METHODS FOR MEALS without session
     // Save a selected meal
     public void saveMeal(Meal meal) {
         template.opsForHash().put("MEALS",meal.getId(),meal);
@@ -35,5 +35,8 @@ public class MealRepo {
         }
         return meals;
     }
+
+    //Methods with session
+
 
 }

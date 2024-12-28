@@ -11,6 +11,15 @@
         .navbar-brand:hover {
             color: #dbeafe; /* Change this to your desired hover color */
         }
+        /* Navbar Brand Styling */
+        .navbar-brand {
+            font-size: 1.5rem; /* Uniform font size for the brand */
+            font-weight: bold; /* Emphasize the brand */
+            color: white; /* Match the rest of the navbar */
+            text-decoration: none; /* Remove underlines */
+            display: flex; /* Align with logo if added */
+            align-items: center; /* Vertically align brand content */
+        }
 
         .icon {
             display: inline-block;
@@ -22,15 +31,15 @@
     <nav class="navbar navbar-expand-lg" style="background-color: #000000;">
         <div class="container-fluid">
             <!-- Brand Name -->
-            <a class="navbar-brand">Nutrition App</a>
+            <a class="navbar-brand" href="/home">Nutrition App</a>
             <!-- Flex container for buttons -->
             <div class="d-flex ms-auto">
-                <!-- "Api Doc" Button -->
-                <a href="/api" class="btn btn-sm btn-outline-secondary">
-                    <div class="icon">&#x1F4C4;</div>API Doc</a>
                 <!-- "Homepage" Button -->
                 <a href="/home" class="btn btn-sm btn-outline-secondary">
                     <div class="icon">&#x1F3E0;</div>Home</a>
+                <!-- "Api Doc" Button -->
+                <a href="/api" class="btn btn-sm btn-outline-secondary">
+                    <div class="icon">&#x1F4C4;</div>API Doc</a>
                 <!-- "View Meal Plans" Button -->
                 <a href="/mealplans" class="btn btn-sm btn-outline-secondary">
                     <div class="icon">&#x1F50D;</div>View Meal Plans</a>
