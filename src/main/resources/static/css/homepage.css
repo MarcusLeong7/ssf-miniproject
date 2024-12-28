@@ -26,21 +26,25 @@ header {
     text-align: center;
 }
 
-
-header h1 {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 700;
-    font-size: 3rem;
-    color: #fdfcfc;
-    margin-bottom: 1rem;
+/* Styling for the heading */
+h1.display-4 {
+    font-family: 'Poppins', sans-serif; /* Clean and modern font */
+    font-weight: 700; /* Bold for emphasis */
+    font-size: 3.5rem; /* Large, impactful text */
+    color: #f8e8a2; /* Warm, soft gold */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4); /* Subtle shadow for depth */
+    margin-bottom: 1rem; /* Add space below */
 }
 
-header p {
+/* Styling for the subtext */
+p.lead {
     font-family: 'Poppins', sans-serif;
-    font-size: 1.25rem;
-    color: #89deec; /* Softer gray for subtext */
-    margin-bottom: 0;
+    font-size: 1.25rem; /* Medium-sized text */
+    color: #ffffff; /* Soft pastel blue for a calming effect */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3); /* Subtle shadow for contrast */
+    margin-top: -0.5rem; /* Adjust spacing */
 }
+
 
 /* Message styling*/
 .message {
