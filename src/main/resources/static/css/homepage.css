@@ -17,13 +17,67 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5); /* Black overlay with 50% opacity */
+    background: rgba(0, 0, 0, 0.7);
     z-index: -1; /* Keep it behind the content */
 }
 
-.h2{
-    text-align: left ;
+/* Header Styling */
+header {
+    text-align: center;
 }
+
+
+header h1 {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 3rem;
+    color: #fdfcfc;
+    margin-bottom: 1rem;
+}
+
+header p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.25rem;
+    color: #89deec; /* Softer gray for subtext */
+    margin-bottom: 0;
+}
+
+/* Message styling*/
+.message {
+    color: #89deec;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+}
+
+/* Features Section */
+.features-section {
+    background-color: #f9f9f9;
+    padding: 3rem 0;
+}
+
+.feature-icon {
+    font-size: 3rem;
+    color: #1d3557; /* Dark blue for icons */
+    margin-bottom: 1rem;
+}
+
+.feature-item h3 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.feature-item p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.6;
+}
+
+
+/*Query Section*/
 /* Make only the query labels white */
 .form-label {
     color: white;
@@ -49,23 +103,98 @@ body::before {
     font-weight: bold;
 }
 
-.message {
-    color: #ef9c1f;
-    font-weight: bold;
+/* Meal Cards Section */
+.meal-cards-section {
+    background-color: #f8f9fa;
+    padding: 3rem 0;
+}
+
+.meal-cards-section h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+}
+/* Meal Cards Styling */
+.meal-card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.meal-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
 }
 
 /* Additional styles for cards */
 .card-title {
-    color: black; /* Ensure card titles are white */
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 600;
+    height: 100%; /* Ensures cards are of equal height */
+    color: #333;
+    margin-bottom: 1rem;
+    min-height: 50px; /* Reserve space for title */
+    text-align: center; /* Align the title to the center */
+}
+.card-img-top {
+    width: 100%; /* Ensure the image takes the full width of the card */
+    height: 200px; /* Set a consistent height for all images */
+    object-fit: cover; /* Ensures the image fills the area while maintaining aspect ratio */
+    border-top-left-radius: 10px; /* Match the card's rounded corners */
+    border-top-right-radius: 10px; /* Match the card's rounded corners */
+    display: block; /* Ensures proper alignment */
 }
 
-p {
-    color: black; /* Ensure all paragraph text is white */
+/* Card Body */
+.card-body {
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    justify-content: space-between; /* Distribute space evenly */
+    flex-grow: 1; /* Allow body to fill available space */
+    padding: 1rem;
 }
 
-label {
-    color: black; /* Ensure form labels are white */
+.meal-card p {
+    font-size: 0.9rem;
+    color: #555555;
 }
+
+
+.btn-outline-primary {
+    font-size: 0.85rem;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-outline-primary:hover {
+    background-color: #007bff;
+    color: white;
+}
+
+
+.btn-secondary {
+    background-color: #6c757d; /* Gray background for reset button */
+    border-color: #6c757d;
+    color: white;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268; /* Darker gray on hover */
+    transform: scale(1.05); /* Slight zoom effect on hover */
+}
+
+.btn-secondary:active {
+    background-color: #495057; /* Even darker gray on click */
+    transform: scale(1); /* Remove zoom effect on click */
+}
+
 
 /* Customize buttons */
 .btn-primary {
@@ -102,6 +231,7 @@ input[type="text"] {
     border-radius: 5px; /* Rounded corners */
     flex-grow: 1; /* Make input take up available space */
 }
+
 button {
     padding: 6px 12px;
     font-size: 14px;
