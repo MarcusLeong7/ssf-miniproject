@@ -26,6 +26,7 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/register", "/registered","/",
+                                "/status",
                                 "/home",
                                 "/search",
                                 "/recipes/{id}/information",

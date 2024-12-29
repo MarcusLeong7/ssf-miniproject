@@ -25,4 +25,14 @@ private RedisTemplate<String,Object> template;
         return (User) template.opsForHash().get(KEY, email);
     }
 
+    // Random key for healthcheck
+    public String getRandomKey() {
+        try {
+            return (String) template.randomKey();
+        } catch (Exception e) {
+            System.err.println("Error fetching random key: " + e.getMessage());
+            return null;
+        }
+    }
+
 }

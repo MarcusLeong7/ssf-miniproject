@@ -3,14 +3,12 @@ package vttp.ssf.mini_project.controller;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import vttp.ssf.mini_project.model.LoginUser;
 import vttp.ssf.mini_project.model.User;
 import vttp.ssf.mini_project.service.UserService;
@@ -114,6 +112,13 @@ public class LoginController {
             session.invalidate(); // Invalidate the session
         }
         return "redirect:/login"; // Redirect to login page
+    }
+
+    @GetMapping("/status")
+    @ResponseBody
+    public ResponseEntity<String> checkRedisHealth() {
+        String healthStatus = userSvc.checkHealth();
+        return ResponseEntity.ok(healthStatus);
     }
 
 

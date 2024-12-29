@@ -34,4 +34,13 @@ public class UserService {
         // verify password during login
         return passwordEncoder.matches(rawPassword, user.getPassword());
     }
+
+    // Random key for health check
+    public String checkHealth() {
+        String randomKey = userRepo.getRandomKey();
+        if (randomKey == null) {
+            return "Redis Health Check: Unhealthy (No keys found or Redis is down)";
+        }
+        return "Redis Health Check: Healthy (Random Key: " + randomKey + ")";
+    }
 }
