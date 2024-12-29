@@ -83,6 +83,7 @@
     </div>
 </section>
 
+<!--Meal Cards-->
 <section class="meal-cards-section py-5 bg-light">
     <div class="container">
         <h2 class="text-center mb-4">Explore CustomBox Meals</h2>
@@ -91,7 +92,7 @@
             <p class="text-danger">No meals matching the search criteria is found.</p>
         </div>
 
-        <!-- Totals Form -->
+        <!-- Calculate Total Nutrition Form -->
         <form method="post" action="/selected-meals">
             <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
             <div class="row" th:if="${!#lists.isEmpty(meals)}">

@@ -2,7 +2,8 @@
 body {
     background: url('/images/OrganicProduce.jpg') no-repeat center center fixed;
     background-size: cover;
-    font-family: Arial, sans-serif;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1rem;
     margin: 0;
     padding: 0;
 }
