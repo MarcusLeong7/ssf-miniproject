@@ -16,6 +16,7 @@ public class MealPlanRepo {
     private RedisTemplate<String,Object> template;
 
     // Methods for mealplan
+    // HGETALL {userEmail} to get mealplan ids and meals within mealplan
     // Save a meal plan
     public void save(MealPlan mealPlan) {
         template.opsForHash().put(mealPlan.getUserEmail(), mealPlan.getId(), mealPlan);

@@ -24,6 +24,7 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        // No authentication is required for these URLs
         http.authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/register", "/registered","/",
                                 "/status",

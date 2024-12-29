@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/api")
 public class ApiController {
 
+    // Show API Doc
     @GetMapping
     public String showApiDoc() {
         return "api";

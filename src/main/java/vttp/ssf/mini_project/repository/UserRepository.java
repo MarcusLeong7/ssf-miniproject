@@ -15,6 +15,7 @@ private RedisTemplate<String,Object> template;
 
     private final String KEY = "USER";
 
+    //HGETALL USER to get userEmail and Encrypted Password
     // Save a user
     public void save(User user) {
         template.opsForHash().put(KEY,user.getEmail(),user);

@@ -41,6 +41,7 @@ public class MealController {
         return "home";
     }
 
+    // Utility method for fetching recipeURL api
     @GetMapping("/recipes/{id}/information")
     public String getRecipeInformation(@PathVariable String id, Model model) {
         // Fetch recipe url from service
@@ -49,14 +50,14 @@ public class MealController {
         return "redirect:" + recipeUrl;
     }
 
+
     @PostMapping("/selected-meals")
     public String selectedMeals(
             @RequestParam(value = "mealIds", required = false) List<String> mealIds,
             Model model, HttpSession session) {
 
-        String sessionId = session.getId();
 
-        // Retrieve meals from the session
+        // Retrieve meals from the cached session
         @SuppressWarnings("unchecked")
         List<Meal> meals = (List<Meal>) session.getAttribute("meals");
 

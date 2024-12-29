@@ -76,6 +76,7 @@ public class LoginController {
             return "login"; // Reload the login page
         }
 
+        // For password encryption
         boolean isAuthenticated = userSvc.authenticate(loginuser.getEmail(), loginuser.getPassword());
 
         if (isAuthenticated) {
@@ -89,10 +90,10 @@ public class LoginController {
 
     }
 
-    // GetMapping for Homepage
+    // Shows Homepage
     @GetMapping("/home")
     public String showHomePage(HttpSession session, Model model) {
-        // Check if the user is logged in
+        // Check for session if the user is logged in
         String userEmail = (String) session.getAttribute("userEmail");
 
         if (userEmail == null) {
@@ -105,15 +106,17 @@ public class LoginController {
         return "home";
     }
 
+    // Logout button
     @GetMapping("/logout")
     public String logout(HttpSession session) {
         if (session != null) {
-            session.removeAttribute("userEmail"); // Example: Remove specific attributes
+            session.removeAttribute("userEmail"); // Remove session attribute
             session.invalidate(); // Invalidate the session
         }
         return "redirect:/login"; // Redirect to login page
     }
 
+    // HealthCheck for Redis Keys
     @GetMapping("/status")
     @ResponseBody
     public ResponseEntity<String> checkRedisHealth() {
